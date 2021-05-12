@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Pain Diary</string>
+    <string-array name="pain_level">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    <string-array name="pain_location">
+        <item>abdomen</item>
+        <item>back</item>
+        <item>elbows</item>
+        <item>facial</item>
+        <item>head</item>
+        <item>hips</item>
+        <item>jaw</item>
+        <item>knees</item>
+        <item>neck</item>
+        <item>shins</item>
+        <item>shoulders</item>
+    </string-array>
+    <string-array name="mood_level">
+        <item>very low</item>
+        <item>low</item>
+        <item>average</item>
+        <item>good</item>
+        <item>very good</item>
+    </string-array>
+</resources>

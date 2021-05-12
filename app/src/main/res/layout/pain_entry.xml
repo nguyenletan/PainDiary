@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/text_pain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="20sp"
+        android:text="Please enter your pain information."/>
+    <TextView
+        android:id="@+id/text_pain_level"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="20sp"
+        android:text="Pain level:"/>
+    <Spinner
+        android:id="@+id/pain_level_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:entries="@array/pain_level"
+        style="@style/MySpinnerLook" />
+    <TextView
+        android:id="@+id/text_pain_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="20sp"
+        android:text="Pain location:"/>
+    <Spinner
+        android:id="@+id/pain_location_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        style="@style/MySpinnerLook"
+        android:entries="@array/pain_location"/>
+    <TextView
+        android:id="@+id/text_mood_level"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="Mood level:"
+        android:textSize="20sp" />
+    <Spinner
+        android:id="@+id/mood_level_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        style="@style/MySpinnerLook"
+        android:entries="@array/mood_level"/>
+    <TextView
+        android:id="@+id/text_step_goal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="Step goal per day:"
+        android:textSize="20sp" />
+    <EditText
+        android:id="@+id/edit_step_goal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="1000" />
+    <TextView
+        android:id="@+id/text_physical_step"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="Total number of physical steps:"
+        android:textSize="20sp" />
+    <EditText
+        android:id="@+id/edit_physical_step"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1000" />
+        android:textSize="20sp" />
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Save" />
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Edit" />
+</LinearLayout>
