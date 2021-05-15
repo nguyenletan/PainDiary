@@ -15,7 +15,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class SignUp extends AppCompatActivity {
     private static final String TAG = "EmailPassword";
@@ -40,7 +39,11 @@ public class SignUp extends AppCompatActivity {
         if (email.equals("")) {
             Toast.makeText(context, "Please enter email.", duration).show();
             return;
+        } else if (!Helpers.isValidEmail(email)) {
+            Toast.makeText(context, "Please enter a valid email.", duration).show();
+            return;
         }
+
         if (password.equals("")) {
             Toast.makeText(context, "Please enter password.", duration).show();
             return;
@@ -53,7 +56,7 @@ public class SignUp extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            Toast.makeText(context, "createUserWithEmail successfully",
+                            Toast.makeText(context, "Sign up successfully",
                                     Toast.LENGTH_SHORT).show();
                             auth.signOut();
                             Intent intent = new Intent(SignUp.this, Login.class);
