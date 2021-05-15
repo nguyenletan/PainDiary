@@ -6,22 +6,22 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
 import com.example.paindiary.entity.Pain;
 import com.example.paindiary.entity.PainStat;
 import com.example.paindiary.repository.PainRepository;
-
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class PainViewModel extends AndroidViewModel {
     private PainRepository cRepository;
     private LiveData<List<Pain>> allPains;
+    private LiveData<Pain> currentDatePain;
 
     public PainViewModel(Application application) {
         super(application);
         cRepository = new PainRepository(application);
         allPains = cRepository.getAllPains();
+        currentDatePain = cRepository.getCurrentDatePain();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -31,6 +31,10 @@ public class PainViewModel extends AndroidViewModel {
 
     public LiveData<List<Pain>> getAllPains() {
         return allPains;
+    }
+
+    public LiveData<Pain> getCurrentDatePain() {
+        return currentDatePain;
     }
 
     public void insert(Pain pain) {

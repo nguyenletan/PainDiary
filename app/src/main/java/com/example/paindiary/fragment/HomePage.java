@@ -13,6 +13,8 @@ import com.example.paindiary.WeatherResponse;
 import com.example.paindiary.WeatherService;
 import com.example.paindiary.databinding.HomePageBinding;
 import com.example.paindiary.viewmodel.SharedViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,16 +23,21 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomePage extends Fragment {
-    private SharedViewModel model;
-    private HomePageBinding addBinding;
     public static String BaseUrl = "http://api.openweathermap.org/";
     public static String AppId = "886705b4c1182eb1c69f28eb8c520e20";
     public static String lat = "-37.814";
     public static String lon = "144.9633";
-
+    private SharedViewModel model;
+    private HomePageBinding addBinding;
+    private FirebaseAuth auth;
     private TextView weatherData;
 
     public HomePage() {
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -41,6 +48,7 @@ public class HomePage extends Fragment {
         View view = addBinding.getRoot();
         weatherData = addBinding.textMessage;
         getCurrentData();
+        auth = FirebaseAuth.getInstance();
         return view;
     }
 
@@ -65,7 +73,7 @@ public class HomePage extends Fragment {
                     assert weatherResponse != null;
 
                     String stringBuilder =
-                                    "City: Melbourne" +
+                            "City: Melbourne" +
                                     "\n" +
                                     "Temperature: " +
                                     weatherResponse.main.temp +

@@ -33,4 +33,6 @@
         <item>good</item>
         <item>very good</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="sign_out">Sign Out</string>
 </resources>

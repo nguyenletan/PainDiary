@@ -18,18 +18,25 @@ import java.util.function.Supplier;
 public class PainRepository {
     private PainDAO painDao;
     private LiveData<List<Pain>> allPains;
+    private LiveData<Pain> currentDatePain;
 
 
     public PainRepository(Application application) {
         PainDatabase db = PainDatabase.getInstance(application);
         painDao = db.painDao();
         allPains = painDao.getAll();
+        currentDatePain = painDao.getCurrentDatePain();
     }
 
     // Room executes this query on a separate thread
     public LiveData<List<Pain>> getAllPains() {
         return allPains;
     }
+
+    public LiveData<Pain> getCurrentDatePain() {
+        return currentDatePain;
+    }
+
 
     public void insert(final Pain pain) {
         PainDatabase.databaseWriteExecutor.execute(new Runnable() {

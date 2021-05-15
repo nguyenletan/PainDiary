@@ -20,8 +20,8 @@ public interface PainDAO {
     @Query("SELECT * FROM pain WHERE uid = :painId LIMIT 1")
     Pain findByID(int painId);
 
-    @Query("SELECT painLocation, count(*) as step  FROM pain GROUP BY painLocation ORDER BY painLocation ASC")
-    LiveData<List<PainStat>> getPainStatistic();
+    @Query("SELECT * FROM pain WHERE createdDate = (SELECT MAX(p.createdDate) FROM pain p)")
+    LiveData<Pain> getCurrentDatePain();
 
     @Insert
     void insert(Pain pain);

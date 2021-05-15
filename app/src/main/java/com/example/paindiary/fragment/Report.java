@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -17,21 +16,14 @@ import com.example.paindiary.entity.Pain;
 import com.example.paindiary.entity.PainStat;
 import com.example.paindiary.viewmodel.PainStatViewModel;
 import com.example.paindiary.viewmodel.PainViewModel;
-import com.example.paindiary.viewmodel.SharedViewModel;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Report extends Fragment {
@@ -52,51 +44,77 @@ public class Report extends Fragment {
         View view = addBinding.getRoot();
 
         painStatViewModel = new ViewModelProvider(requireActivity()).get(PainStatViewModel.class);
-        painStatViewModel.getPainStatistic().observe(getViewLifecycleOwner(), new
-                Observer<List<PainStat>>() {
-                    @Override
-                    public void onChanged(@Nullable final List<PainStat> painStats) {
-                        //adapter.addPains(pains);
-                        List<PieEntry> pieEntries = new ArrayList<>();
-                        for (PainStat painStat : painStats) {
-                            pieEntries.add(new PieEntry(painStat.step, painStat.painLocation));
-                        }
-                        Legend legend = addBinding.pieChart.getLegend();
-                        legend.setTextSize(12);
-                        legend.setWordWrapEnabled(true);
-                        legend.setEnabled(false);
-                        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-                        legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
-                        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-                        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-                        legend.setDrawInside(false);
-                        PieDataSet pieDataSet = new PieDataSet(pieEntries, "Steps");
-                        pieDataSet.setColors(ColorTemplate.PASTEL_COLORS);
-                        pieDataSet.setValueTextSize(16);
-                        pieDataSet.setValueTextColor(Color.rgb(255,255,255));
-                        PieData pieData = new PieData(pieDataSet);
-                        addBinding.pieChart.setData(pieData);
 
-                        addBinding.pieChart.setVisibility(View.VISIBLE);
-                        addBinding.pieChart.animateY(800);
+//        painStatViewModel.getPainStatistic().observe(getViewLifecycleOwner(), painStats -> {
+//            //adapter.addPains(pains);
+//            List<PieEntry> pieEntries = new ArrayList<>();
+//            for (PainStat painStat : painStats) {
+//                pieEntries.add(new PieEntry(painStat.step, painStat.painLocation));
+//            }
+//
+//            Legend legend = addBinding.pieChart.getLegend();
+//            legend.setTextSize(12);
+//            legend.setWordWrapEnabled(true);
+//            legend.setEnabled(false);
+//            legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+//            legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
+//            legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+//            legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+//            legend.setDrawInside(false);
+//
+//            PieDataSet pieDataSet = new PieDataSet(pieEntries, "Steps");
+//            pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+//            pieDataSet.setValueTextSize(16);
+//            pieDataSet.setValueTextColor(Color.rgb(255,255,255));
+//            PieData pieData = new PieData(pieDataSet);
+//            addBinding.pieChart.setData(pieData);
+//
+//            addBinding.pieChart.setVisibility(View.VISIBLE);
+//            addBinding.pieChart.animateY(800);
+//
+//            //addBinding.pieChart.setEntryLabelColor(Color.rgb(255, 255, 255));
+//            addBinding.pieChart.setEntryLabelTextSize(14);
+//            addBinding.pieChart.setDrawEntryLabels(true);
+//            //addBinding.pieChart.(false);
+//
+//            //addBinding.pieChart.needsHighlight(0);
+//            addBinding.pieChart.setCenterText("Daily Steps");
+//            addBinding.pieChart.setCenterTextSize(20);
+//
+//            Description description = new Description();
+//            description.setText("Daily Steps Chart");
+//            addBinding.pieChart.setDescription(description);
+//
+//            //addBinding.pieChart.invalidate();
+//        });
 
-                        //addBinding.pieChart.setEntryLabelColor(Color.rgb(255, 255, 255));
-                        addBinding.pieChart.setEntryLabelTextSize(14);
-                        addBinding.pieChart.setDrawEntryLabels(true);
-                        //addBinding.pieChart.(false);
+        painViewModel = new ViewModelProvider(requireActivity()).get(PainViewModel.class);
+        painViewModel.getCurrentDatePain().observe(getViewLifecycleOwner(), pain -> {
+            List<PieEntry> pieEntries = new ArrayList<>();
+            pieEntries.add(new PieEntry(pain.getPhysicalStep(), "Physical Step"));
+            pieEntries.add(new PieEntry(pain.getStepGoal(), "Step Goal"));
 
-                        //addBinding.pieChart.needsHighlight(0);
-                        addBinding.pieChart.setCenterText("Daily Steps");
-                        addBinding.pieChart.setCenterTextSize(20);
+            PieDataSet pieDataSet = new PieDataSet(pieEntries, "Steps");
+            pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+            pieDataSet.setValueTextSize(16);
+            pieDataSet.setValueTextColor(Color.rgb(255,255,255));
+            PieData pieData = new PieData(pieDataSet);
+            addBinding.stepsPieChart.setData(pieData);
 
-                        Description description = new Description();
-                        description.setText("Daily Steps Chart");
-                        addBinding.pieChart.setDescription(description);
+            addBinding.stepsPieChart.setVisibility(View.VISIBLE);
+            addBinding.stepsPieChart.animateY(800);
 
-                        //addBinding.pieChart.invalidate();
-                    }
-                });
+            addBinding.stepsPieChart.setEntryLabelTextSize(14);
+            addBinding.stepsPieChart.setDrawEntryLabels(true);
 
+            addBinding.stepsPieChart.setCenterText("Daily Steps");
+            addBinding.stepsPieChart.setCenterTextSize(20);
+
+            Description description = new Description();
+            description.setText("Daily Steps Chart");
+            addBinding.stepsPieChart.setDescription(description);
+
+        });
 
         return view;
     }

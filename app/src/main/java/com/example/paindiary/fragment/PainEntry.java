@@ -14,7 +14,8 @@ import com.example.paindiary.R;
 import com.example.paindiary.databinding.PainEntryBinding;
 import com.example.paindiary.entity.Pain;
 import com.example.paindiary.viewmodel.PainViewModel;
-import com.example.paindiary.viewmodel.SharedViewModel;
+
+import java.util.Date;
 
 public class PainEntry extends Fragment {
     String pain_level;
@@ -88,7 +89,7 @@ public class PainEntry extends Fragment {
                 if ((!pain_level.isEmpty() && pain_level != null)) {
                     int physical_steps = Integer.parseInt(physical_step);
                     int step_goal = Integer.parseInt(step_goal_control);
-                    Pain pain = new Pain(pain_level, pain_location, mood_level, physical_steps, step_goal);
+                    Pain pain = new Pain(pain_level, pain_location, mood_level, physical_steps, step_goal, 0.0, 0.0, 0.0, new Date());
                     painViewModel.insert(pain);
                 }
             }

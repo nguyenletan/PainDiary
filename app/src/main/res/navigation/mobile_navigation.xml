@@ -20,6 +20,10 @@
         android:name="com.example.paindiary.fragment.Report"
         android:label="Reports" />
     <fragment
+        android:id="@+id/nav_sign_out"
+        android:name="com.example.paindiary.fragment.SignOut"
+        android:label="Sign Out" />
+    <fragment
         android:id="@+id/nav_map"
         android:name="com.example.paindiary.fragment.Map"
         android:label="Maps" />

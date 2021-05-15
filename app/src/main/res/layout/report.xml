@@ -11,9 +11,17 @@
 <!--        android:textSize="20sp"-->
 <!--        android:text="This is Report"-->
 <!--        android:gravity="center_horizontal" />-->
+
+<!--    <com.github.mikephil.charting.charts.PieChart-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:id="@+id/pieChart" />-->
+
     <com.github.mikephil.charting.charts.PieChart
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_margin="10dp"
-        android:id="@+id/pieChart" />
+        android:id="@+id/steps_pieChart"
+        android:layout_gravity="center"/>
 </LinearLayout>
